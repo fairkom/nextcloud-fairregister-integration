@@ -51,13 +51,20 @@ npm run build
 
 The plugin's source is bind-mounted into the Nextcloud container by the
 local stack in the [faircommons](https://git.fairkom.net/hosting/faircommons)
-repo:
+repo, which pulls this repo in as a git submodule under
+`faircommons/nextcloud_fairregister/`:
 
 ```yaml
 # faircommons/deployments/local/docker-compose.oidc.yml
 nextcloud:
   volumes:
-    - ../../../nextcloud_fairregister/fairregister:/var/www/html/custom_apps/fairregister
+    - ../../nextcloud_fairregister/fairregister:/var/www/html/custom_apps/fairregister
+```
+
+After cloning faircommons, initialize the submodule once:
+
+```bash
+git -C path/to/faircommons submodule update --init nextcloud_fairregister
 ```
 
 PHP edits go live immediately; JS edits need `npm run build` (or
