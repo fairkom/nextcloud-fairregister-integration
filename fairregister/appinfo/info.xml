@@ -47,7 +47,7 @@ needed.
 AGPL-3.0-or-later. See `LICENSES/` inside the app folder for full text
 and per-file SPDX headers.
     ]]></description>
-    <version>0.5.3</version>
+    <version>0.5.4</version>
     <licence>agpl</licence>
     <author mail="support@fairkom.eu" homepage="https://fairkom.eu/">fairkom</author>
     <namespace>Fairregister</namespace>
