@@ -7,6 +7,14 @@ declare(strict_types=1);
 // Real Nextcloud is not booted during unit tests.
 
 namespace OCP {
+	interface ICache {
+		public function get(string $key);
+		public function set(string $key, $value, int $ttl = 0);
+		public function remove(string $key): bool;
+	}
+	interface ICacheFactory {
+		public function createDistributed(string $prefix = ''): ICache;
+	}
 	interface IConfig {
 		public function getAppValue(string $app, string $key, string $default = ''): string;
 		public function setAppValue(string $app, string $key, mixed $value): void;
@@ -48,6 +56,7 @@ namespace OCP\Security {
 		public const CHAR_DIGITS = '0123456789';
 		public const CHAR_LOWER = 'abcdefghijklmnopqrstuvwxyz';
 		public const CHAR_UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		public const CHAR_HUMAN_READABLE = 'abcdefghijkmnpqrstwxyzABCDEFGHJKLMNPQRSTWXYZ23456789';
 		public function generate(int $length, string $characters = ''): string;
 	}
 }
@@ -90,6 +99,25 @@ namespace OCP\AppFramework\Bootstrap {
 
 namespace OCA\Files\Event {
 	class LoadAdditionalScriptsEvent {}
+}
+
+namespace OCP\Files {
+	interface File {
+		public function getName(): string;
+	}
+	interface Folder {
+		public function getById(int $id): array;
+	}
+	interface IRootFolder {
+		public function getUserFolder(string $userId): Folder;
+	}
+	class NotFoundException extends \Exception {}
+}
+
+namespace OCP {
+	class Constants {
+		public const PERMISSION_READ = 1;
+	}
 }
 
 namespace OCP\EventDispatcher {
