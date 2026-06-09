@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <!--
+    SPDX-FileCopyrightText: fairkom <philipp.monz@fairkom.eu>
+    SPDX-License-Identifier: CC0-1.0
+    -->
+    <id>fairregister</id>
+    <name>fairregister</name>
+    <summary>Register files as Works in fairregister directly from Nextcloud.</summary>
+    <description><![CDATA[
+Register files stored in Nextcloud as Works in a fairregister
+(faircommons) instance to prove ownership at a specific point in time.
+
+How it works:
+
+- A new "Register with fairregister" action appears in the three-dots
+  menu of every file in the Files app.
+- One click streams the file from Nextcloud into the configured
+  fairregister storage and opens the fairregister registration form
+  in a new tab, pre-filled with the file reference.
+- The user fills in metadata (title, type, license, contributors, …)
+  in the fairregister frontend, which is the source of truth for the
+  resulting Work record.
+- The Nextcloud sidebar offers a deep link to the user's "My works"
+  page in fairregister for browsing and certificate download.
+
+Authentication is OpenID Connect (Keycloak) — each user connects once
+in Personal Settings. The app uses an authorization-code flow with
+PKCE and stores tokens encrypted via Nextcloud's ICrypto.
+
+Admin: configure the fairregister API base URL, the fairregister
+frontend URL, and the OIDC issuer / client id in Administration
+Settings.
+    ]]></description>
+    <version>0.5.3</version>
+    <licence>agpl</licence>
+    <author mail="philipp.monz@fairkom.eu" homepage="https://www.fairkom.eu">fairkom</author>
+    <namespace>Fairregister</namespace>
+    <documentation>
+        <user>https://fairregister.net/help</user>
+        <admin>https://git.fairkom.net/hosting/faircommons/-/wikis/nextcloud-plugin</admin>
+        <developer>https://git.fairkom.net/hosting/faircommons</developer>
+    </documentation>
+    <category>integration</category>
+    <category>files</category>
+    <website>https://fairregister.net</website>
+    <bugs>https://git.fairkom.net/hosting/faircommons/-/issues</bugs>
+    <repository>https://git.fairkom.net/hosting/faircommons</repository>
+    <dependencies>
+        <php min-version="8.1"/>
+        <nextcloud min-version="30" max-version="32"/>
+    </dependencies>
+    <settings>
+        <admin>OCA\Fairregister\Settings\Admin</admin>
+        <admin-section>OCA\Fairregister\Settings\AdminSection</admin-section>
+    </settings>
+</info>

@@ -1,0 +1,11 @@
+# Build artifacts kept inside the app dir (`fairregister/`) so the App
+# Store tarball can include them — they have their own .gitignore.
+_reference/
+*.tar.gz
+*.sig
+.deploy-stage/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
